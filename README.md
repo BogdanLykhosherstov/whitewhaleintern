@@ -53,9 +53,9 @@ For completion by applicant
 Quick Start
 -----------
 
-* Replace this text with instructions on how to execute your program
-* What programming language did you use? See [here](http://ideone.com/) for the supported ones.
-* Also tell us anything else the reviewer should know about your code
+* Run java gibgen "String name" -  to work with a string. Run java gibgen "text.txt" - to read from a file. Its important its name is text.txt.
+* I used Java - more on it in the coding questions.
+
 
 
 Coding Questions
@@ -63,6 +63,18 @@ Coding Questions
 
 Question 1: "How did you approach the problem?" (500 words or less)
 
+Answer: First and foremost I have started with considering which language I would use. I have decided to use java due to a variety of different libraries it has available and because I am most familiar with it. Then I have divided my task into 3 phases: Planning, Coding, Testing and debugging. 
+
+Planning: It seemed like a fairly trivial algorithm at first, however, upon further looking into it I started wondering how to deal with punctuation and spaces between words and how to account for an array of different characters that will appear between seperate words. The approach I've gone with was to shuffle one word at a time and put a punctuation right after each one. This way, my algorithm would only have to deal with alphabetic characters and apostrophies only. After getting a general idea for my solution I've delved into the coding phase. I've also ensured to only shuffle the between the first and the last index since those letters have to be untouched.
+
+Coding: I've created 2 arrays to store all words and punctuations. Using string splitting I was able to seperate the two easily and begin my shuffling algorithm for each individual word. For said algorithm, instead of using a Math.random, I've figured I could do something different that would give the impression of randomness without actually being random. I've decided to switch the index of even characters with odd(i=1 with i=2, i=3 with i=4, etc). To accomplish this, I've scanned through the entire word (except for the first and last letter), adding each odd and even indexed character to a corresponding, seperate que. Then, I would alternate between appending to the new string with a first character of the original word from the Odd and Even ques, starting by popping from the Odd, since no matter the word, second letter of it is always even in terms of order. Then I would finish by adding the last letter of the original word on top. After each word, I would add an element from the punctuation array, and repeat the process, iterating through each word element and adding a punctuation element afterwards. The process repeats until there are no more elements.
+
+Testin/Debugging: I've ran numerous tests which caused me to go back and refine my algorithm as well as tests in the terminal to ensure it runs well eliminating bugs along the way. I've decided not to use refactoring techniques for this simple project, but for something more complex in the future, I would ensure to eliminate unnecessary methods, reduce coupling and increase cohesiveness between methods and classes to ensure products extensibility and ease of use. 
+
 
 
 Question 2: "What was the most difficult aspect of the solution?" (500 words or less)
+
+Answer: 
+  The most challenging part was initially figuring out how to tackle entire sentences at a time. With different punctuations and spacing it was hard to come up with a good algorithm for reading an entire paragraph at a time and recognizing words as well as punctuations. Therefore, I have decided to break it down into a more doable, smaller task, such as shuffling just one word at a time and concatenating it with a punctuation. I had an idea to create 2 seperate arrays for words and punctuations but I was making the process way more complicated than it should have been. Some time, and some serious struggling afterwards I've found a very simple way to do it with a string split method and use regular expression to filter out the things I wanted to leave out of each array. After succesfully getting the results I wanted, all I had to do was feed individual words into my shuffling algorithm and append them with punctiations from the corresponding array. Problem solved!
+  Second hardest thing, believe it or not, was to figure out how to shuffle words with apostrophies in them. I was thinking of just splitting the string into pre and post apostrophy bits and running those as seperate words but it didn't come without its problems. Although after a bit of consideration, I figured I could just append the apostrophy and last letter to the end of the word, after im done shuffling the first part. So I did just that and sure enough it worked like a charm!
